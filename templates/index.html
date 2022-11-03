@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Events List</h1>
+<div class="events_list">
+<div class="header row">
+    <div>Date</div>
+<div>Name</div>
+<div>Number of guests</div>
+<div>Room Location</div>
+<div>Description</div>
+<div>Reccurence</div>
+</div>
+{% for event in events %}
+<div class="row">
+   <div>{{event.date}}</div>
+    <div><a href="/events/{{events.index(event)}}">{{event.name}}</a></div>
+    <div>{{event.number_guest}}</div>
+    <div>{{event.room_location}}</div>
+    <div>{{event.description}}</div>
+    <div>{% if event.recurring_monthly %}
+    Recurs Monthly &#9989;
+    {% else %}
+    Recurs Monthly &#x274c;
+    {% endif %}
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="add_event">
+    <form method="POST" action="/events">
+        <label for="date">Date: </label>
+        <input type="datetime-local" name="date" id="date"><br>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name"><br>
+        <label for="number_of_guests">Number of guests: </label>
+        <input type="text" name="number_of_guests" id="number_of_guests"><br>
+        <label for="room_location">Room Location: </label>
+        <input type="text" name="room_location" id="room_location"><br>
+        <label for="description">Description: </label>
+        <input type="text" name="description" id="description"><br>
+        <label for="recurring_monthly">Recurring monthly: </label>
+        <input type="checkbox" name="recurring_monthly" id="recurring_monthly"><br>
+        <button type="submit">Add Event</button>
+    </form>
+</div>
+
+{% endblock %}

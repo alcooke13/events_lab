@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>An Event</h1>
+<div class="events_list">
+<div class="header row">
+    <div>Date</div>
+<div>Name</div>
+<div>Number of guests</div>
+<div>Room Location</div>
+<div>Description</div>
+<div>Reccurence</div>
+</div>
+<div class="row">
+   <div>{{event.date}}</div>
+    <div> {{event.name}}</div>
+    <div>{{event.number_guest}}</div>
+    <div>{{event.room_location}}</div>
+    <div>{{event.description}}</div>
+    <div>{% if event.recurring_monthly %}
+    Recurs Monthly &#9989;
+    {% else %}
+    Recurs Monthly &#x274c;
+    {% endif %}
+</div>
+</div>
+</div>
+<div class="delete_event">
+    <form method="POST" action="/events/delete/{{index}}">
+        <button type="submit">Delete Event</button>
+    </form>
+</div>
+
+{% endblock %}
